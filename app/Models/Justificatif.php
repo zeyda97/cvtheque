@@ -26,7 +26,7 @@ class Justificatif extends Model
     use HasFactory;
 
     public $table = 'justificatifs';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -68,7 +68,7 @@ class Justificatif extends Model
      */
     public static $rules = [
         'type_justificatif_id' => 'required',
-        'fichier' => 'required|string|max:191',
+        'fichier' => 'required|max:191',
         'experience_id' => 'required',
         'user_id' => 'required',
         'langue_id' => 'required',
@@ -79,5 +79,16 @@ class Justificatif extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+    public function type_justificatif()
+    {
+        return $this->belongsTo(TypeJustificatif::class,'type_justificatif_id')->withDefault();
+    }
+
+    public function fichierPrincipale()
+    {
+        return asset('storage/photos-justificatifs/' . $this->fichier);
+    }
+
+
+
 }

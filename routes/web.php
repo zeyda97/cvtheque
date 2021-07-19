@@ -76,9 +76,9 @@ Route::resource('fiches', App\Http\Controllers\FicheController::class);
 Route::resource('users', App\Http\Controllers\UserController::class);
 
 
+    Route::resource('candidats', App\Http\Controllers\CandidatController::class);
 });
 
-Route::resource('candidats', App\Http\Controllers\CandidatController::class);
 
 
 Route::middleware(['auth'])->group(function () {

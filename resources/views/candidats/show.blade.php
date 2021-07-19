@@ -34,7 +34,33 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    @include('candidats.show_fields')
+
+                    <div class="table-responsive">
+                        <table class="table" id="formations-table">
+                            <thead>
+                            <tr>
+                                <th>Spécialité Etudiée</th>
+                                <th>Date Début</th>
+                                <th>Date Fin</th>
+                                <th>Etablissement</th>
+                                <th>Diplôme</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($formations as $formation)
+                                <tr>
+                                    <td>{{ $formation->specialite_etudie }}</td>
+                                    <td>{{ $formation->date_debut }}</td>
+                                    <td>{{ $formation->date_fin }}</td>
+                                    <td>{{ $formation->etablissement }}</td>
+                                    <td>{{ $formation->diplome }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -146,7 +172,26 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    @include('justificatifs.table')
+
+                    <div class="table-responsive">
+                        <table class="table" id="justificatifs-table">
+                            <thead>
+                            <tr>
+                                <th>Type Justificatif</th>
+                                <th>Fichier</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($justificatifs as $justificatif)
+                                <tr>
+                                    <td>{{ $justificatif->type_justificatif->libelle }}</td>
+                                    <td><a href="{{ $justificatif->fichierPrincipale() }}">Voir le fichier</a></td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>
