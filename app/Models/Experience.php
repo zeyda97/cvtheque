@@ -29,7 +29,7 @@ class Experience extends Model
     use HasFactory;
 
     public $table = 'experiences';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -91,5 +91,12 @@ class Experience extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+
+    public function type_experience()
+    {
+        return $this->belongsTo(TypeExperience::class,'type_experience_id')->withDefault();
+    }
+
+
+
 }

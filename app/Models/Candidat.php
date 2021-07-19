@@ -35,7 +35,7 @@ class Candidat extends Model
     use HasFactory;
 
     public $table = 'candidats';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -109,11 +109,49 @@ class Candidat extends Model
         'situation_matrimoniale_id' => 'required',
         'type_metier_id' => 'required',
         'localisation' => 'required|boolean',
-        
+
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
     ];
 
-    
+    public function type_candidature()
+    {
+        return $this->belongsTo(TypeCandidature::class,'type_candidature_id')->withDefault();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id')->withDefault();
+    }
+
+    public function nationalite()
+    {
+        return $this->belongsTo(Nationalite::class,'nationalite_id')->withDefault();
+    }
+
+public function poste()
+    {
+        return $this->belongsTo(Poste::class,'poste_id')->withDefault();
+    }
+
+public function genre()
+    {
+        return $this->belongsTo(Genre::class,'genre_id')->withDefault();
+    }
+
+public function statut()
+    {
+        return $this->belongsTo(Statut::class,'statut_id')->withDefault();
+    }
+
+public function situation_matrimoniale()
+    {
+        return $this->belongsTo(SituationMatrimoniale::class,'situation_matrimoniale_id')->withDefault();
+    }
+public function type_metier()
+    {
+        return $this->belongsTo(TypeMetier::class,'type_metier_id')->withDefault();
+    }
+
 }

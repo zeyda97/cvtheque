@@ -23,10 +23,10 @@ class CreateCandidatsTable extends Migration
             $table->integer('nombre_enfant');
             $table->string('numero_telephone');
             $table->string('deuxieme_numero_telephone')->nullable();
-            
+
             $table->string('deuxieme_email')->nullable();
-            
-            $table->string('site_web');
+
+            $table->string('site_web')->nullable();
             $table->foreignId('poste_id')->constrained('postes');
             $table->foreignId('statut_id')->constrained('statuts');
             $table->foreignId('situation_matrimoniale_id')->constrained('situation_matrimoniales');

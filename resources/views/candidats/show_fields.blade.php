@@ -1,19 +1,28 @@
 <!-- Type Candidature Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('type_candidature_id', 'Type Candidature Id:') !!}
-    <p>{{ $candidat->type_candidature_id }}</p>
+    <label>Prenom Nom</label>
+    <p>{{ $candidat->user->NomComplet() }}</p>
+</div>
+
+<div class="col-sm-12">
+    <label>Email</label>
+    <p>{{ $candidat->user->email }}</p>
+</div>
+<div class="col-sm-12">
+    {!! Form::label('type_candidature_id', 'Type Candidature:') !!}
+    <p>{{ $candidat->type_candidature->libelle }}</p>
 </div>
 
 <!-- Genre Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('genre_id', 'Genre Id:') !!}
-    <p>{{ $candidat->genre_id }}</p>
+    {!! Form::label('genre_id', 'Sexe:') !!}
+    <p>{{ $candidat->genre->libelle }}</p>
 </div>
 
 <!-- Date Naissance Field -->
 <div class="col-sm-12">
     {!! Form::label('date_naissance', 'Date Naissance:') !!}
-    <p>{{ $candidat->date_naissance }}</p>
+    <p>{{ is_null($candidat->date_naissance ) ? '' : $candidat->date_naissance->format('d-mY') }}</p>
 </div>
 
 <!-- Lieu Naissance Field -->
@@ -24,8 +33,8 @@
 
 <!-- Nationalite Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('nationalite_id', 'Nationalite Id:') !!}
-    <p>{{ $candidat->nationalite_id }}</p>
+    {!! Form::label('nationalite_id', 'Nationalite:') !!}
+    <p>{{ $candidat->nationalite->nom_nationalite }}</p>
 </div>
 
 <!-- Nombre Enfant Field -->
@@ -60,37 +69,38 @@
 
 <!-- Poste Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('poste_id', 'Poste Id:') !!}
-    <p>{{ $candidat->poste_id }}</p>
+    {!! Form::label('poste_id', 'Poste:') !!}
+    <p>{{ $candidat->poste->libelle }}</p>
 </div>
 
 <!-- Statut Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('statut_id', 'Statut Id:') !!}
-    <p>{{ $candidat->statut_id }}</p>
+    {!! Form::label('statut_id', 'Statut:') !!}
+    <p>{{ $candidat->statut->libelle }}</p>
 </div>
 
 <!-- Situation Matrimoniale Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('situation_matrimoniale_id', 'Situation Matrimoniale Id:') !!}
-    <p>{{ $candidat->situation_matrimoniale_id }}</p>
+    {!! Form::label('situation_matrimoniale_id', 'Situation Matrimoniale:') !!}
+    <p>{{ $candidat->situation_matrimoniale->libelle }}</p>
 </div>
 
 <!-- Type Metier Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('type_metier_id', 'Type Metier Id:') !!}
-    <p>{{ $candidat->type_metier_id }}</p>
+    {!! Form::label('type_metier_id', 'Type Metier:') !!}
+    <p>{{ $candidat->type_metier->libelle }}</p>
 </div>
 
 <!-- Localisation Field -->
 <div class="col-sm-12">
     {!! Form::label('localisation', 'Localisation:') !!}
-    <p>{{ $candidat->localisation }}</p>
+    <p>
+        @if( $candidat->localisation == true)
+            <small class="badge badge-success">oui</small>
+        @else
+            <small class="badge badge-danger">non</small>
+        @endif
+    </p>
 </div>
 
-<!-- User Id Field -->
-<div class="col-sm-12">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{{ $candidat->user_id }}</p>
-</div>
 

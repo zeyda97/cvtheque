@@ -18,7 +18,7 @@ class User extends Authenticatable
     use Notifiable;
 
     public $table = 'users';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -71,7 +71,36 @@ class User extends Authenticatable
         'updated_at' => 'nullable'
     ];
 
-    public function NomComplet(){
+    public function NomComplet()
+    {
     return $this->prenom." ".$this->nom;
-}
+    }
+
+    public function langues()
+    {
+        return $this->belongsToMany(Langue::class,'langue_users')
+            ->withPivot('niveau_id')
+            ->withTimestamps();
+    }
+
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class,'user_id');
+    }
+
+    public function competences()
+    {
+        return $this->hasMany(Competence::class,'user_id');
+    }
+
+    public function formations()
+    {
+        return $this->hasMany(Formation::class,'user_id');
+    }
+
+    public function justificatifs()
+    {
+        return $this->hasMany(Justificatif::class,'user_id');
+    }
+
 }

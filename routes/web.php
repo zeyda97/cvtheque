@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::middleware(['auth', 'admin'])->group(function () {
-    
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
@@ -77,7 +77,30 @@ Route::resource('users', App\Http\Controllers\UserController::class);
 
 
 });
+
 Route::resource('candidats', App\Http\Controllers\CandidatController::class);
 
-Route::get('/deposer-candidatures', [App\Http\Controllers\WelcomeController::class, 'index'])->name('deposer.candidatures')->middleware('auth');
-Route::get('/deposer-candidatures-formation', [App\Http\Controllers\WelcomeController::class, 'formation'])->name('candidats.formation')->middleware('auth');
+
+Route::middleware(['auth'])->group(function () {
+
+Route::get('/deposer-candidatures-profil', [App\Http\Controllers\WelcomeController::class, 'deposercandidaturesprofil'])->name('deposercandidaturesprofil');
+Route::post('/deposer-candidatures-profil', [App\Http\Controllers\WelcomeController::class, 'deposercandidaturesprofilpost'])->name('deposercandidaturesprofilpost');
+
+
+Route::get('/deposer-candidatures-formation', [App\Http\Controllers\WelcomeController::class, 'deposercandidaturesformation'])->name('deposercandidaturesformation');
+Route::post('/deposer-candidatures-formation', [App\Http\Controllers\WelcomeController::class, 'deposercandidaturesformationpost'])->name('deposercandidaturesformationpost');
+
+Route::get('/deposer-candidatures-competences', [App\Http\Controllers\WelcomeController::class, 'deposercandidaturescompetences'])->name('deposercandidaturescompetences');
+Route::post('/deposer-candidatures-competences', [App\Http\Controllers\WelcomeController::class, 'deposercandidaturescompetencespost'])->name('deposercandidaturescompetencespost');
+
+Route::get('/deposer-candidatures-experience', [App\Http\Controllers\WelcomeController::class, 'deposercandidaturesexperience'])->name('deposercandidaturesexperience');
+Route::post('/deposer-candidatures-experience', [App\Http\Controllers\WelcomeController::class, 'deposercandidaturesexperiencepost'])->name('deposercandidaturesexperiencepost');
+
+Route::get('/deposer-candidatures-langues', [App\Http\Controllers\WelcomeController::class, 'deposercandidatureslangues'])->name('deposercandidatureslangues');
+Route::post('/deposer-candidatures-langues', [App\Http\Controllers\WelcomeController::class, 'deposercandidatureslanguespost'])->name('deposercandidatureslanguespost');
+
+Route::get('/deposer-candidatures-pieces', [App\Http\Controllers\WelcomeController::class, 'deposercandidaturespieces'])->name('deposercandidaturespieces');
+Route::post('/deposer-candidatures-pieces', [App\Http\Controllers\WelcomeController::class, 'deposercandidaturespiecespost'])->name('deposercandidaturespiecespost');
+
+Route::get('/deposer-candidatures-terminer', [App\Http\Controllers\WelcomeController::class, 'terminerdepot'])->name('terminerdepot');
+});

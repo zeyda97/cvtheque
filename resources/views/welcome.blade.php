@@ -41,9 +41,9 @@
         </li>
       </ul>
       <form class="d-flex">
-        
-        <a href="{{ route('deposer.candidatures') }}" class="btn btn-outline-success">Candidature</a>
-        
+
+        <a href="{{ route('deposercandidaturesprofil') }}" class="btn btn-outline-success">Candidature</a>
+
       </form>
     </div>
   </div>

@@ -17,11 +17,11 @@ class CreateJustificatifsTable extends Migration
             $table->id();
             $table->foreignId('type_justificatif_id')->constrained('type_justificatifs');
             $table->string('fichier');
-            $table->foreignId('experience_id')->constrained('experiences');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('langue_id')->constrained('langues');
-            $table->foreignId('competence_id')->constrained('competences');
-            $table->foreignId('formation_id')->constrained('formations');
+            $table->foreignId('experience_id')->nullable()->constrained('experiences');
+            $table->foreignId('user_id')->nullable()->constrained('users');
+            $table->foreignId('langue_id')->nullable()->constrained('langues');
+            $table->foreignId('competence_id')->nullable()->constrained('competences');
+            $table->foreignId('formation_id')->nullable()->constrained('formations');
             $table->softDeletes();
             $table->timestamps();
         });

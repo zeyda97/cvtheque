@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateCandidatRequest;
 use App\Http\Requests\UpdateCandidatRequest;
+use App\Models\Candidat;
+use App\Models\User;
 use App\Repositories\CandidatRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -30,7 +32,7 @@ class CandidatController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $candidats = $this->candidatRepository->all();
+        $candidats = Candidat::orderBy('id','DESC')->get();
 
         return view('candidats.index')
             ->with('candidats', $candidats);
@@ -65,13 +67,7 @@ class CandidatController extends AppBaseController
         /*return redirect(route('candidats.formation'));*/
     }
 
-    /**
-     * Display the specified Candidat.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
+
     public function show($id)
     {
         $candidat = $this->candidatRepository->find($id);
@@ -81,8 +77,20 @@ class CandidatController extends AppBaseController
 
             return redirect(route('candidats.index'));
         }
+        $user = User::find($candidat->user_id);
+        $experiences = $user->experiences;
+        $langues = $user->langues;
+        $competences = $user->competences;
+        $formations = $user->formations;
+        $justificatifs = $user->justificatifs;
 
-        return view('candidats.show')->with('candidat', $candidat);
+        return view('candidats.show')
+            ->with('formations', $formations)
+            ->with('competences', $competences)
+            ->with('justificatifs', $justificatifs)
+            ->with('experiences', $experiences)
+            ->with('langues', $langues)
+            ->with('candidat', $candidat);
     }
 
     /**

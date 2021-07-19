@@ -1,21 +1,19 @@
 <div class="table-responsive">
     <table class="table" id="competences-table">
         <thead>
-            <tr>
-                <th>Type de Compétences</th>
-        <th>Niveau</th>
-        <th>Utilisqteur</th>
-        <th>Année</th>
-                <th colspan="3">Action</th>
-            </tr>
+        <tr>
+            <th>Type de Compétences</th>
+            <th>Niveau</th>
+            <th>Année</th>
+            <th colspan="3">Action</th>
+        </tr>
         </thead>
         <tbody>
         @foreach($competences as $competence)
             <tr>
-                <td>{{ $competence->type_competence_id }}</td>
-            <td>{{ $competence->niveaux_id }}</td>
-            <td>{{ $competence->user_id }}</td>
-            <td>{{ $competence->annee }}</td>
+                <td>{{ $competence->type_competence->libelle }}</td>
+                <td>{{ $competence->niveau->libelle }}</td>
+                <td>{{ is_null($competence->annee ) ? '' : $competence->annee->format('d-mY') }}</td>
                 <td width="120">
                     {!! Form::open(['route' => ['competences.destroy', $competence->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

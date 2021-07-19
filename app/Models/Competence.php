@@ -23,7 +23,7 @@ class Competence extends Model
     use HasFactory;
 
     public $table = 'competences';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -67,5 +67,12 @@ class Competence extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+    public function type_competence()
+    {
+        return $this->belongsTo(TypeCompetence::class,'type_competence_id')->withDefault();
+    }
+    public function niveau()
+    {
+        return $this->belongsTo(Niveaux::class,'niveaux_id')->withDefault();
+    }
 }

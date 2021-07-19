@@ -1,3 +1,4 @@
+<div class="row mx-2">
 
 <!-- Type Candidature Id Field -->
 
@@ -30,7 +31,7 @@
 
 
 <!-- Lieu Naissance Field -->
-<div class="form-group col-sm-12 col-lg-12">
+<div class="form-group col-sm-6 col-lg-6">
     {!! Form::label('lieu_naissance', 'Lieu Naissance:') !!}
     {!! Form::text('lieu_naissance', null, ['class' => 'form-control']) !!}
 </div>
@@ -111,7 +112,7 @@
 <!-- Type Metier Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('type_metier_id', 'Type de Métier:') !!}
-    
+
     <select class="form-control" name="type_metier_id">
     @foreach ($typeMetiers  as $typeMetier)
         <option value="{{ $typeMetier->id }}" >{{ $typeMetier->libelle }}</option>
@@ -128,6 +129,7 @@
     </div>
 </div>
 
+</div>
 
 
 
