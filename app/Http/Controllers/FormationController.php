@@ -29,7 +29,14 @@ class FormationController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $formations = $this->formationRepository->all();
+        if (auth()->user()->role_id == 3)
+        {
+            $formations = auth()->user()->formations;
+        }
+        else
+        {
+            $formations = $this->formationRepository->all();
+        }
 
         return view('formations.index')
             ->with('formations', $formations);

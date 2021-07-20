@@ -21,26 +21,46 @@ use App\Models\TypeExperience;
 use App\Models\TypeCompetence;
 use App\Models\Niveaux;
 use Illuminate\Support\Facades\Auth;
+use Laracasts\Flash\Flash;
 
 
 class WelcomeController extends Controller
 {
     public function deposercandidaturesprofil(Request $request)
     {
-      $typeCandidatures = TypeCandidature::all();
-      $genres = Genre::all();
-      $nationalites = Nationalite::all();
-      $situationMatrimoniales = SituationMatrimoniale::all();
-      $postes = Poste::all();
-      $statuts = Statut::all();
-      $typeMetiers = TypeMetier::all();
-      $typeExperiences = TypeExperience::all();
-      $typeCompetences = TypeCompetence::all();
-      $niveaux = Niveaux::all();
+        if (auth()->user()->candidats()->exists()){
 
-        $candidat = $request->session()->get('candidat');
+            if(auth()->user()->role_id == 3){
 
-        return view('candidature',compact('candidat','typeCandidatures','genres','nationalites','situationMatrimoniales','postes','statuts','typeMetiers','typeExperiences','typeCompetences','niveaux'));
+                Flash::success('Vous avez deja une candidature vous pouvez la modifier sur votre tableau de bord.');
+
+                return redirect()->route('profil');
+            }
+
+        }
+          $typeCandidatures = TypeCandidature::all();
+
+          $genres = Genre::all();
+
+          $nationalites = Nationalite::all();
+
+          $situationMatrimoniales = SituationMatrimoniale::all();
+
+          $postes = Poste::all();
+
+          $statuts = Statut::all();
+
+          $typeMetiers = TypeMetier::all();
+
+          $typeExperiences = TypeExperience::all();
+
+          $typeCompetences = TypeCompetence::all();
+
+          $niveaux = Niveaux::all();
+
+          $candidat = $request->session()->get('candidat');
+
+          return view('candidature',compact('candidat','typeCandidatures','genres','nationalites','situationMatrimoniales','postes','statuts','typeMetiers','typeExperiences','typeCompetences','niveaux'));
 
     }
 

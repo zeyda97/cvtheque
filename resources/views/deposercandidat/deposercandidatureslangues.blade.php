@@ -108,9 +108,12 @@
                  </form>
              </div>
         </div>
+
+            @if(auth()->user()->langues->count() > 0)
             <div class="card-footer">
                 <a href="{{ route('deposercandidaturespieces') }}" class="float-right btn btn-primary">Suivant</a>
             </div>
+            @endif
       </div>
     </div>
   </div>

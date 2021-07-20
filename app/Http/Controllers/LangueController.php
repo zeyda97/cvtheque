@@ -29,7 +29,16 @@ class LangueController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $langues = $this->langueRepository->all();
+        if (auth()->user()->role_id == 3)
+        {
+            $langues = auth()->user()->langues;
+        }
+        else
+        {
+            $langues = $this->langueRepository->all();
+        }
+
+
 
         return view('langues.index')
             ->with('langues', $langues);

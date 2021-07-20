@@ -76,6 +76,11 @@ class User extends Authenticatable
     return $this->prenom." ".$this->nom;
     }
 
+    public function candidats()
+    {
+        return $this->hasMany(Candidat::class,'user_id');
+    }
+
     public function langues()
     {
         return $this->belongsToMany(Langue::class,'langue_users')

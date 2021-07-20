@@ -47,19 +47,10 @@ Route::resource('typeCandidatures', App\Http\Controllers\TypeCandidatureControll
 
 Route::resource('adresses', App\Http\Controllers\AdresseController::class);
 
-Route::resource('langues', App\Http\Controllers\LangueController::class);
-
 Route::resource('typeExperiences', App\Http\Controllers\TypeExperienceController::class);
 
 Route::resource('postes', App\Http\Controllers\PosteController::class);
 
-Route::resource('justificatifs', App\Http\Controllers\JustificatifController::class);
-
-Route::resource('competences', App\Http\Controllers\CompetenceController::class);
-
-Route::resource('formations', App\Http\Controllers\FormationController::class);
-
-Route::resource('experiences', App\Http\Controllers\ExperienceController::class);
 
 Route::resource('niveauxes', App\Http\Controllers\NiveauxController::class);
 
@@ -82,6 +73,22 @@ Route::resource('users', App\Http\Controllers\UserController::class);
 
 
 Route::middleware(['auth'])->group(function () {
+
+
+
+    Route::resource('justificatifs', App\Http\Controllers\JustificatifController::class);
+
+    Route::resource('competences', App\Http\Controllers\CompetenceController::class);
+
+    Route::resource('formations', App\Http\Controllers\FormationController::class);
+
+    Route::resource('experiences', App\Http\Controllers\ExperienceController::class);
+
+
+    Route::resource('langues', App\Http\Controllers\LangueController::class);
+
+
+    Route::get('/profil', [App\Http\Controllers\ProfilController::class, 'index'])->name('profil');
 
 Route::get('/deposer-candidatures-profil', [App\Http\Controllers\WelcomeController::class, 'deposercandidaturesprofil'])->name('deposercandidaturesprofil');
 Route::post('/deposer-candidatures-profil', [App\Http\Controllers\WelcomeController::class, 'deposercandidaturesprofilpost'])->name('deposercandidaturesprofilpost');

@@ -29,7 +29,16 @@ class CompetenceController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $competences = $this->competenceRepository->all();
+        if (auth()->user()->role_id == 3)
+        {
+            $competences = auth()->user()->competences;
+        }
+        else
+        {
+            $competences = $this->competenceRepository->all();
+        }
+
+
 
         return view('competences.index')
             ->with('competences', $competences);

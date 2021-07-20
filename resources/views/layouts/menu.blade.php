@@ -1,3 +1,4 @@
+@if(auth()->user()->role_id == 1)
 <li class="nav-item">
     <a href="{{ route('users.index') }}"
        class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
@@ -171,6 +172,46 @@
         <p>Candidats</p>
     </a>
 </li>
+@elseif(auth()->user()->role_id == 3)
+    <li class="nav-item">
+        <a href="{{ route('profil') }}" class="nav-link {{ Request::is('profil*') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>Tableau de bord</p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ route('formations.index') }}" class="nav-link {{ Request::is('formations*') ? 'active' : '' }}">
+            <i class="far fa-file-pdf nav-icon"></i>
+            <p>Formations</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ route('experiences.index') }}" class="nav-link {{ Request::is('experiences*') ? 'active' : '' }}">
+            <i class="far fa-file nav-icon"></i>
+            <p>Expériences</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ route('competences.index') }}" class="nav-link {{ Request::is('competences*') ? 'active' : '' }}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Compétences</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ route('langues.index') }}" class="nav-link {{ Request::is('langues*') ? 'active' : '' }}">
+            <i class="fas fa-globe nav-icon"></i>
+            <p>Langues</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ route('justificatifs.index') }}" class="nav-link {{ Request::is('justificatifs*') ? 'active' : '' }}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Justificatifs</p>
+        </a>
+    </li>
+@endif
+
 
 
 

@@ -116,9 +116,11 @@
                  </form>
              </div>
         </div>
+            @if(auth()->user()->competences->count() > 0)
             <div class="card-footer">
                 <a href="{{ route('deposercandidaturesexperience') }}" class="float-right btn btn-primary">Suivant</a>
             </div>
+                @endif
       </div>
     </div>
   </div>

@@ -29,7 +29,15 @@ class JustificatifController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $justificatifs = $this->justificatifRepository->all();
+        if (auth()->user()->role_id == 3)
+        {
+            $justificatifs = auth()->user()->justificatifs;
+        }
+        else
+        {
+            $justificatifs = $this->justificatifRepository->all();
+        }
+
 
         return view('justificatifs.index')
             ->with('justificatifs', $justificatifs);

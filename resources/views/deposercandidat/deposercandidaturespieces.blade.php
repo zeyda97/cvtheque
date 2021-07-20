@@ -149,9 +149,11 @@
                  </form>
              </div>
         </div>
+            @if(auth()->user()->langues->count() > 0)
             <div class="card-footer">
-                <a href="{{ route('terminerdepot') }}" class="float-right btn btn-primary">Terminer</a>
+                <a href="{{ route('profil') }}" class="float-right btn btn-primary">Terminer</a>
             </div>
+            @endif
       </div>
     </div>
   </div>

@@ -29,7 +29,14 @@ class ExperienceController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $experiences = $this->experienceRepository->all();
+        if (auth()->user()->role_id == 3)
+        {
+            $experiences = auth()->user()->experiences;
+        }
+        else
+        {
+            $experiences = $this->experienceRepository->all();
+        }
 
         return view('experiences.index')
             ->with('experiences', $experiences);

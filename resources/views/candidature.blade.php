@@ -16,43 +16,40 @@
   <title>Page d'accueil</title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <a class="navbar-brand" href="#">CVTHEQUE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Page d'acceuil</a>
+                </li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-        <form class="d-flex">
-
-          <a href="{{ route('deposercandidaturesprofil') }}" class="btn btn-outline-success">Candidature</a>
-
-        </form>
-      </div>
+            <form class="d-flex">
+                @guest()
+                    <a href="{{ route('register') }}" class="btn btn-outline-success mx-2">Creer un compte</a>
+                    <a href="{{ route('login') }}" class="btn btn-outline-success">Se connecter</a>
+                @else
+                    @if(auth()->user()->role_id == 1)
+                        <a href="{{ route('home') }}" class="btn btn-outline-success">Mon compte</a>
+                    @elseif(auth()->user()->role_id == 3)
+                        <a href="{{ route('profil') }}" class="btn btn-outline-success">Mon compte</a>
+                    @endif
+                    <a href="#" class="btn btn-danger btn-flat float-right mx-2"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Se deconnecter
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                @endguest
+            </form>
+        </div>
     </div>
-  </nav>
+</nav>
   <!-- MultiStep Form -->
   <div class="container-fluid" id="grad1">
     <div class="row justify-content-center mt-0">
